@@ -64,6 +64,7 @@ class TestController extends Controller
         $resultArr = array();
         $x = '';
         $chunk_size = 0;
+        $loops = 0 ;
 
         // dd(array_search($order , $arr));
 
@@ -73,43 +74,50 @@ class TestController extends Controller
             return $resultArr;
         }
 
-
         $sets = $order/250;
-        $sets = (int) ++$sets;
+        $sets = round($sets);
+
+        // while(round($sets/2) != 1){
+        //     $loops++;
+        // }
 
         for($i=0; $i<$sets; $i++){
             array_push($temp , 250);
         }
 
+        $loops = 4;
 
         // ///////////////////////////////////////
 
         // handling of 5000
 
-        while(array_search($x , $arr) !== false){
+        // while($loops == 0){
 
-            if(sizeof($temp) >= 2){
-                $chunk_arr = [$temp[0],$temp[1]];
-                $x = array_sum($chunk_arr);
-                if(array_search($x , $arr) !== false){
-                    $chunk_size = 2;
-                    // array_chunk
-                }else{
-                    $chunk_arr = [$temp[0],$temp[1],$temp[2]];
-                    $x = array_sum($chunk_arr);
-                    if(array_search($x , $arr)){
-                        $chunk_size = 3;
-                    // array_chunk
-                    }
-                }
-            }else{
-                array_push($resultArr , $temp[0]);
-                // return $resultArr;
-            }
+        for($k=0; $k<=4; $k++){
+
+            // dd($loops);
+            // if(sizeof($temp) >= 2){
+            //     $chunk_arr = [$temp[0],$temp[1]];
+            //     $x = array_sum($chunk_arr);
+            //     if(array_search($x , $arr) !== false){
+            //         $chunk_size = 2;
+            //         // array_chunk
+            //     }else{
+            //         $chunk_arr = [$temp[0],$temp[1],$temp[2]];
+            //         $x = array_sum($chunk_arr);
+            //         if(array_search($x , $arr) !== false){
+            //             $chunk_size = 3;
+            //         // array_chunk
+            //         }
+            //     }
+            // }else{
+            //     array_push($resultArr , $temp[0]);
+            //     // return $resultArr;
+            // }
 
 
-            $newArray = array_chunk($temp, $chunk_size);
-
+            $newArray = array_chunk($temp, 2);
+        
             for($j=0; $j<sizeof($newArray); $j++){
                 
                 if(sizeof($newArray[$j]) == 2){
@@ -122,9 +130,9 @@ class TestController extends Controller
                 $temp = $arr2;                
             }
 
-            $chunk_arr = [$temp[0],$temp[1]];
-            $x = array_sum($chunk_arr);
-    
+            // $chunk_arr = [$temp[0],$temp[1]];
+            // $x = array_sum($chunk_arr);
+         
         }
 
 
