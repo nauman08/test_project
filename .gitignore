@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 /vendor/
 node_modules/
 npm-debug.log
@@ -23,6 +24,8 @@ Homestead.json
 /.vagrant
 .phpunit.result.cache
 =======
+=======
+>>>>>>> f0b49ff (my first commit)
 /node_modules
 /public/hot
 /public/storage
@@ -38,4 +41,7 @@ npm-debug.log
 yarn-error.log
 /.idea
 /.vscode
+<<<<<<< HEAD
+>>>>>>> f0b49ff (my first commit)
+=======
 >>>>>>> f0b49ff (my first commit)
