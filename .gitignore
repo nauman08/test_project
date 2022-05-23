@@ -1,31 +1,3 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
-/vendor/
-node_modules/
-npm-debug.log
-yarn-error.log
-
-# Laravel 4 specific
-bootstrap/compiled.php
-app/storage/
-
-# Laravel 5 & Lumen specific
-public/storage
-public/hot
-
-# Laravel 5 & Lumen specific with changed public path
-public_html/storage
-public_html/hot
-
-storage/*.key
-.env
-Homestead.yaml
-Homestead.json
-/.vagrant
-.phpunit.result.cache
-=======
-=======
->>>>>>> f0b49ff (my first commit)
 /node_modules
 /public/hot
 /public/storage
@@ -41,7 +13,3 @@ npm-debug.log
 yarn-error.log
 /.idea
 /.vscode
-<<<<<<< HEAD
->>>>>>> f0b49ff (my first commit)
-=======
->>>>>>> f0b49ff (my first commit)
