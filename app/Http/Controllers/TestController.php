@@ -64,9 +64,7 @@ class TestController extends Controller
         $resultArr = array();
         $x = '';
         $chunk_size = 0;
-        $loops = 0 ;
-
-        // dd(array_search($order , $arr));
+        $loops = 1 ;
 
         if(array_search($order , $arr) !== false){
             $index = array_search($order , $arr);
@@ -75,66 +73,67 @@ class TestController extends Controller
         }
 
         $sets = $order/250;
-        $sets = round($sets);
-
-        // while(round($sets/2) != 1){
-        //     $loops++;
-        // }
+        $sets = ceil($sets);
 
         for($i=0; $i<$sets; $i++){
             array_push($temp , 250);
         }
 
-        $loops = 4;
-
-        // ///////////////////////////////////////
-
-        // handling of 5000
-
-        // while($loops == 0){
-
-        for($k=0; $k<=4; $k++){
-
-            // dd($loops);
-            // if(sizeof($temp) >= 2){
-            //     $chunk_arr = [$temp[0],$temp[1]];
-            //     $x = array_sum($chunk_arr);
-            //     if(array_search($x , $arr) !== false){
-            //         $chunk_size = 2;
-            //         // array_chunk
-            //     }else{
-            //         $chunk_arr = [$temp[0],$temp[1],$temp[2]];
-            //         $x = array_sum($chunk_arr);
-            //         if(array_search($x , $arr) !== false){
-            //             $chunk_size = 3;
-            //         // array_chunk
-            //         }
-            //     }
-            // }else{
-            //     array_push($resultArr , $temp[0]);
-            //     // return $resultArr;
-            // }
-
-
-            $newArray = array_chunk($temp, 2);
-        
-            for($j=0; $j<sizeof($newArray); $j++){
-                
-                if(sizeof($newArray[$j]) == 2){
-                    $sum = array_sum($newArray[$j]);
-                    array_push($arr2, $sum);
-                }else{
-                    array_push($arr2,$newArray[$j][0]);
-                }
-
-                $temp = $arr2;                
-            }
-
-            // $chunk_arr = [$temp[0],$temp[1]];
-            // $x = array_sum($chunk_arr);
-         
+        while(ceil($sets/2) != 1){
+            $loops++;
+            $sets = ceil($sets/2);
         }
 
+        for($j=0; $j<=$loops; $j++){
+            if(sizeof($temp) >= 2){
+                
+                $chunk_arr = [$temp[0],$temp[1]];
+                $x = array_sum($chunk_arr);
+
+                if(array_search($x , $arr) !== false){
+                    $chunk_size = 2;
+                }else{
+                    if(sizeof($temp) == 2){
+                        // for($m=0; $m<sizeof($temp); $m++)
+                        //     array_push($arr2,$temp[$m]);
+                    }else{
+                        $chunk_arr = [$temp[0],$temp[1],$temp[2]];
+                        $x = array_sum($chunk_arr);
+                            if(array_search($x , $arr) !== false){
+                                $chunk_size = 3;
+                            }
+                    }                   
+                }
+            }else{
+                // array_push($arr2 , $temp[0]);
+            }
+
+
+            $newArray = array_chunk($temp, $chunk_size);
+
+            for($k=0; $k<sizeof($newArray); $k++){
+                
+                if(sizeof($newArray[$k]) >= 2){
+                    if(array_search(array_sum($newArray[$k]) , $arr) !== false){
+                        $sum = array_sum($newArray[$k]);
+                        array_push($arr2, $sum);
+                    }
+                    else{
+                        for($m=0; $m<sizeof($newArray[$k]); $m++)
+                            array_push($arr2,$newArray[$k][$m]);
+                    }
+                       
+                }else{                   
+                    array_push($arr2,$newArray[$k][0]);
+                }
+
+                             
+            }
+           
+            $temp = $arr2; 
+            $arr2 = [];
+                     
+        }
 
         dd($temp);
 
