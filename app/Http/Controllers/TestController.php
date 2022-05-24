@@ -56,6 +56,38 @@ class TestController extends Controller
 
     public function solution(Request $req)
     {
+        $arr = [250 , 500 , 1000 , 2000 , 5000];        
+        $order = $req->fidget;
+        $divisor = 0;
+        $result = array();
+        $loop = sizeof($arr) - 1;
+
+        for($i=$loop; $i>0; $i--){
+            $divisor = $order/$arr[$i];
+            if(floor($divisor) > 0){
+                for($j=0; $j<floor($divisor); $j++){
+                    array_push($result,$arr[$i]);
+                }
+            }
+
+            $order = $order%$arr[$i];
+        }
+
+        if($order > 0){
+            array_push($result,250);
+        }
+
+        
+
+        dd($result);
+
+
+        // the case for 1390 or 1800 ,  1000 in divisor , 390 should get 500 but divisor giving 390/500 = 0
+
+
+
+
+
         $arr = [250 , 500 , 1000 , 2000 , 5000];
         $order = $req->fidget;
 
